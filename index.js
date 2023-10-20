@@ -81,17 +81,17 @@ async function run() {
   })
    //get the user
    app.get('/users',async(req,res)=>{
-    const cursor =userCollection.find();
+    const cursor =CardProductCollections.find();
     const result =await cursor.toArray();
     res.send(result);
 })
-   //delete a user
-   app.delete('/users/:id',async(req,res)=>{
-    const id = req.params.id;
-    const query={_id: new ObjectId(id)}
-    const result= await userCollection.deleteOne(query);
-    res.send(result)
-})
+//    //delete a user
+//    app.delete('/users/:id',async(req,res)=>{
+//     const id = req.params.id;
+//     const query={_id: new ObjectId(id)}
+//     const result= await CardProductCollections.deleteOne(query);
+//     res.send(result)
+// })
 
 
     // Send a ping to confirm a successful connection
