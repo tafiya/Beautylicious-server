@@ -26,6 +26,7 @@ async function run() {
     // Connect the client to the server	(optional starting in v4.7)
     await client.connect();
     const productCollections = client.db("productsDB").collection("products");
+    const CardProductCollections = client.db("productsDB").collection("CardProducts");
 
      //------------------------------Items related API--------------------------------------
            //Get form server
@@ -70,6 +71,14 @@ async function run() {
         const result= await productCollections.updateOne(filter,newUpdatedProduct,options);
         res.send(result);
     })
+// add cart items
+    app.post('/users',async(req,res)=>{
+      const user= req.body;
+      const result =await CardProductCollections.insertOne(user);
+      console.log("items added")
+      res.send(result);
+
+  })
 
     // Send a ping to confirm a successful connection
     await client.db("admin").command({ ping: 1 });
